@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTES } from '../../shared/routes';
+import { ROUTES } from '../../../shared/routes';
 
 @Component({
     moduleId: module.id,

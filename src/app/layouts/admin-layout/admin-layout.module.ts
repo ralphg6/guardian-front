@@ -14,9 +14,9 @@ import { MapsComponent } from '../../pages/admin/maps/maps.component';
 import { NotificationsComponent } from '../../pages/admin/notifications/notifications.component';
 import { UpgradeComponent } from '../../pages/admin/upgrade/upgrade.component';
 
-import { CardStatsComponent } from '../../components/card-stats/card-stats.component';
-import { TableComponent } from '../../components/table/table.component';
-import { ChartBarsComponent } from '../../components/charts/bars/bars.component';
+import { CardStatsComponent } from '../../components/admin/card-stats/card-stats.component';
+import { TableComponent } from '../../components/admin/table/table.component';
+import { ChartBarsComponent } from '../../components/admin/charts/bars/bars.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TableData } from '../../../components/table/table.component';
+import { TableData } from '../../../components/admin/table/table.component';
 
 @Component({
   selector: 'dashboard-cmp',
@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   private atividadesEntregues: any[];
 
   ngOnInit() {
-    this.atrasadas = 2;
+    this.atrasadas = 3;
     this.concluidas = 40;
     this.pendentes = 10;
 
