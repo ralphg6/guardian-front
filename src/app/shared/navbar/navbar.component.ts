@@ -2,6 +2,7 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/co
 import { ROUTES } from '../routes';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { SocialAuthService, SocialUser } from "angularx-social-login";
 
 @Component({
   moduleId: module.id,
@@ -11,6 +12,8 @@ import { Location } from '@angular/common';
 })
 
 export class NavbarComponent implements OnInit {
+  user: SocialUser;
+  loggedIn: boolean;
   private listTitles: any[];
   location: Location;
   private nativeElement: Node;
@@ -20,7 +23,7 @@ export class NavbarComponent implements OnInit {
   public isCollapsed = true;
   @ViewChild("navbar-cmp", { static: false }) button;
 
-  constructor(location: Location, private renderer: Renderer2, private element: ElementRef, private router: Router) {
+  constructor(location: Location, private renderer: Renderer2, private element: ElementRef, private router: Router, private authService: SocialAuthService) {
     this.location = location;
     this.nativeElement = element.nativeElement;
     this.sidebarVisible = false;
@@ -32,6 +35,13 @@ export class NavbarComponent implements OnInit {
     this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
     this.router.events.subscribe((event) => {
       this.sidebarClose();
+    });
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+      if (!this.loggedIn) {
+          this.router.navigate(['/login']);
+      }
     });
   }
   getTitle() {

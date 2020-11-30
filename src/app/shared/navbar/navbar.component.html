@@ -53,8 +53,8 @@
         </li> -->
         <li class="nav-item btn-rotate" ngbDropdown placement="bottom-left">
           <a class="nav-link" >
-            <div class="avatar">
-              <img src="assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+            <div *ngIf="loggedIn" class="avatar">
+              <img src="{{ user.photoUrl }}" alt="Circle Image" class="img-circle img-no-padding img-responsive">
             </div>
           </a>
         </li>

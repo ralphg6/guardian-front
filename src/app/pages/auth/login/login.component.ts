@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; // import router from angular router
+import { GoogleLoginProvider, SocialAuthService } from "angularx-social-login";
 
 @Component({
   selector: 'login-cmp',
@@ -8,14 +9,15 @@ import { Router } from '@angular/router'; // import router from angular router
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private route: Router) { }
+  constructor(private route: Router, private authService: SocialAuthService) { }
 
   ngOnInit() {
 
   }
 
   entrar() {
-    this.route.navigate(['/dashboard']);
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    // this.route.navigate(['/dashboard']);
   }
 
 }

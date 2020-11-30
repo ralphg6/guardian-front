@@ -25,6 +25,7 @@
     "@ng-bootstrap/ng-bootstrap": "7.0.0",
     "@ngui/map": "0.30.3",
     "@types/googlemaps": "3.39.14",
+    "angularx-social-login": "^3.4.1",
     "arrive": "2.4.1",
     "bootstrap": "4.5.2",
     "bootstrap-notify": "3.1.3",

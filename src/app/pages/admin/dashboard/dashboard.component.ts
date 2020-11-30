@@ -18,7 +18,10 @@ export class DashboardComponent implements OnInit {
 
   private atividadesEntregues: any[];
 
+  constructor() { }
+
   ngOnInit() {
+
     this.atrasadas = 3;
     this.concluidas = 40;
     this.pendentes = 10;
