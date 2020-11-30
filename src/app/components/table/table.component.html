@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">{{title}}</h4>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class=" text-primary">
+          <th *ngFor="let header of data.headerRow">
+            {{header}}
+          </th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of data.dataRows">
+            <td *ngFor="let col of row">
+              {{col}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer">
+    <hr/>
+    <div class="card-stats">
+      <i class="fa fa-refresh"></i> Atualizar
+    </div>
+  </div>
+</div>
