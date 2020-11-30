@@ -10,6 +10,6 @@ import { ROUTES } from '../../shared/routes';
 export class SidebarComponent implements OnInit {
     public menuItems: any[];
     ngOnInit() {
-        this.menuItems = ROUTES.filter(menuItem => menuItem);
+        this.menuItems = ROUTES;
     }
 }

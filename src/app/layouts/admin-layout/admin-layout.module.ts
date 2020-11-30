@@ -16,9 +16,7 @@ import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
 
 import { CardStatsComponent } from '../../components/card-stats/card-stats.component';
 import { TableComponent } from '../../components/table/table.component';
-
 import { ChartBarsComponent } from '../../components/charts/bars/bars.component';
-
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -27,18 +25,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
-    NgbModule
+    NgbModule,
   ],
   declarations: [
-    CardStatsComponent,
     DashboardComponent,
     UserComponent,
-    TableComponent,
     UpgradeComponent,
     TypographyComponent,
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
+    CardStatsComponent,
+    TableComponent,
     ChartBarsComponent,
   ]
 })
