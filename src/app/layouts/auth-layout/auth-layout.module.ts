@@ -5,7 +5,9 @@ import { FormsModule } from '@angular/forms';
 
 import { AuthLayoutRoutes } from './auth-layout.routing';
 
-import { LoginComponent } from '../../pages/auth/login/login.component';
+import { LoginPageComponent } from '../../pages/auth/login/login.page';
+import { LogoutPageComponent } from '../../pages/auth/logout/logout.page';
+
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -17,7 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
   ],
   declarations: [
-    LoginComponent,
+    LoginPageComponent,
+    LogoutPageComponent,
   ]
 })
 

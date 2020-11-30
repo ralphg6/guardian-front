@@ -4,9 +4,9 @@ import { TableData } from '../../../components/admin/table/table.component';
 @Component({
   selector: 'dashboard-cmp',
   moduleId: module.id,
-  templateUrl: 'dashboard.component.html'
+  templateUrl: 'dashboard.page.html'
 })
-export class DashboardComponent implements OnInit {
+export class DashboardPageComponent implements OnInit {
 
   private atrasadas: number;
   private concluidas: number;

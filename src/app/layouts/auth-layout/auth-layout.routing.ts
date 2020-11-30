@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 
-import { LoginComponent } from '../../pages/auth/login/login.component';
-import { LogoutComponent } from '../../pages/auth/logout/logout.component';
+import { LoginPageComponent } from '../../pages/auth/login/login.page';
+import { LogoutPageComponent } from '../../pages/auth/logout/logout.page';
 
 export const AuthLayoutRoutes: Routes = [
-    { path: 'login',      component: LoginComponent },
-    { path: 'logout',      component: LogoutComponent },
+    { path: 'login',      component: LoginPageComponent },
+    { path: 'logout',      component: LogoutPageComponent },
 ];
