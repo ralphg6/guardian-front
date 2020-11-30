@@ -5,14 +5,14 @@ import { FormsModule } from '@angular/forms';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
 
-import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
-import { UserComponent } from '../../pages/user/user.component';
-// import { TableComponent } from '../../pages/table/table.component';
-import { TypographyComponent } from '../../pages/typography/typography.component';
-import { IconsComponent } from '../../pages/icons/icons.component';
-import { MapsComponent } from '../../pages/maps/maps.component';
-import { NotificationsComponent } from '../../pages/notifications/notifications.component';
-import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
+import { DashboardComponent } from '../../pages/admin/dashboard/dashboard.component';
+import { UserComponent } from '../../pages/admin/user/user.component';
+// import { TableComponent } from '../../pages/admin/table/table.component';
+import { TypographyComponent } from '../../pages/admin/typography/typography.component';
+import { IconsComponent } from '../../pages/admin/icons/icons.component';
+import { MapsComponent } from '../../pages/admin/maps/maps.component';
+import { NotificationsComponent } from '../../pages/admin/notifications/notifications.component';
+import { UpgradeComponent } from '../../pages/admin/upgrade/upgrade.component';
 
 import { CardStatsComponent } from '../../components/card-stats/card-stats.component';
 import { TableComponent } from '../../components/table/table.component';

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AuthLayoutRoutes } from './auth-layout.routing';
 
-import { LoginComponent } from '../../pages/login/login.component';
+import { LoginComponent } from '../../pages/auth/login/login.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 

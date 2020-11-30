@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TableData } from '../../components/table/table.component';
+import { TableData } from '../../../components/table/table.component';
 
 @Component({
   selector: 'dashboard-cmp',
