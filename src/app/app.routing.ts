@@ -6,7 +6,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 export const AppRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
@@ -27,6 +27,6 @@ export const AppRoutes: Routes = [
   }]},
   {
     path: '**',
-    redirectTo: 'dashboard'
+    redirectTo: 'login'
   }
 ]
