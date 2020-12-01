@@ -16,7 +16,7 @@ export class DashboardPageComponent implements OnInit {
   private concluidas: any = false;
   private pendentes: any = false;
 
-  private tableData: TableData;
+  private pendentesTableData: TableData;
 
   private turmasTableData: TableData;
 
@@ -70,8 +70,8 @@ export class DashboardPageComponent implements OnInit {
         }
         this.concluidas = concluidas;
 
-        this.tableData = {
-          headerRow: [],
+        this.pendentesTableData = {
+          headerRow: ['Nome'],
           dataRows: [],
         };
 
@@ -81,11 +81,28 @@ export class DashboardPageComponent implements OnInit {
             date, this.analyzesPerStateSummary['CREATED'].dates[date]
           ]));
           atividadesPendentes = atividadesPendentes.concat(CREATED);
+          // Object.keys(this.analyzesPerState['CREATED']).forEach(date => {
+          //   this.analyzesPerState['CREATED'][date].forEach(task => {
+          //     // console.log('task', task);
+          //     this.pendentesTableData.dataRows.push([
+          //       task.title,
+          //     ]);
+          //   });
+          // })
+          // this.pendentesTableData.dataRows = ;
         }
         if ('NEW' in this.analyzesPerStateSummary) {
           const NEW = Object.keys(this.analyzesPerStateSummary['NEW'].dates).map(date => ([
             date, this.analyzesPerStateSummary['NEW'].dates[date]
           ]));
+          // Object.keys(this.analyzesPerState['NEW']).forEach(date => {
+          //   this.analyzesPerState['NEW'][date].forEach(task => {
+          //     // console.log('task', task);
+          //     this.pendentesTableData.dataRows.push([
+          //       task.title,
+          //     ]);
+          //   });
+          // })
           atividadesPendentes = atividadesPendentes.concat(NEW);
         }
         this.atividadesPendentes = atividadesPendentes;

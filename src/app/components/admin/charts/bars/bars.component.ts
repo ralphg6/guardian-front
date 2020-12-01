@@ -30,8 +30,8 @@ export class ChartBarsComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
 
-    console.log('this.data', this.data);
-    console.log('this.canvas', this.canvas);
+    // console.log('this.data', this.data);
+    // console.log('this.canvas', this.canvas);
 
     if (!this.data || this.data.length === 0) { return; }
 
