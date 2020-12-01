@@ -59,6 +59,9 @@ export class DashboardPageComponent implements OnInit {
         if ('CREATED' in this.analyzesPerStateSummary) {
           pendentes += this.analyzesPerStateSummary['CREATED'].total;
         }
+        if ('NEW' in this.analyzesPerStateSummary) {
+          pendentes += this.analyzesPerStateSummary['NEW'].total;
+        }
         this.pendentes = pendentes;
 
         let concluidas = 0;
@@ -71,7 +74,7 @@ export class DashboardPageComponent implements OnInit {
         this.concluidas = concluidas;
 
         this.pendentesTableData = {
-          headerRow: ['Nome'],
+          headerRow: ['Nome', 'Data'],
           dataRows: [],
         };
 
@@ -81,28 +84,28 @@ export class DashboardPageComponent implements OnInit {
             date, this.analyzesPerStateSummary['CREATED'].dates[date]
           ]));
           atividadesPendentes = atividadesPendentes.concat(CREATED);
-          // Object.keys(this.analyzesPerState['CREATED']).forEach(date => {
-          //   this.analyzesPerState['CREATED'][date].forEach(task => {
-          //     // console.log('task', task);
-          //     this.pendentesTableData.dataRows.push([
-          //       task.title,
-          //     ]);
-          //   });
-          // })
+          Object.keys(this.analyzesPerState['CREATED']).forEach(date => {
+            this.analyzesPerState['CREATED'][date].forEach(task => {
+              // console.log('task', task);
+              this.pendentesTableData.dataRows.push([
+                task.title, task.updateDate,
+              ]);
+            });
+          })
           // this.pendentesTableData.dataRows = ;
         }
         if ('NEW' in this.analyzesPerStateSummary) {
           const NEW = Object.keys(this.analyzesPerStateSummary['NEW'].dates).map(date => ([
             date, this.analyzesPerStateSummary['NEW'].dates[date]
           ]));
-          // Object.keys(this.analyzesPerState['NEW']).forEach(date => {
-          //   this.analyzesPerState['NEW'][date].forEach(task => {
-          //     // console.log('task', task);
-          //     this.pendentesTableData.dataRows.push([
-          //       task.title,
-          //     ]);
-          //   });
-          // })
+          Object.keys(this.analyzesPerState['NEW']).forEach(date => {
+            this.analyzesPerState['NEW'][date].forEach(task => {
+              // console.log('task', task);
+              this.pendentesTableData.dataRows.push([
+                task.title, task.updateDate,
+              ]);
+            });
+          })
           atividadesPendentes = atividadesPendentes.concat(NEW);
         }
         this.atividadesPendentes = atividadesPendentes;

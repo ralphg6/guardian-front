@@ -125,6 +125,7 @@ export class TasksService {
 
       if (isIncludedSubmission(submission)) {
         const updateDate = getUpdateDate(submission);
+        task.updateDate = updateDate;
 
         if (!tasksAnalyze[submission.state]) { tasksAnalyze[submission.state] = {}; }
         if (!tasksAnalyze[submission.state][updateDate]) {
