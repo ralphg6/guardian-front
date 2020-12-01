@@ -20,12 +20,17 @@ export class ChartBarsComponent implements AfterViewInit {
   @Input()
   data: ChatBarsData;
 
+  @Input()
+  emptyMessage = 'Sem dados para exibir';
+
   @ViewChild('chart', { static: false })
   canvas: ElementRef;
 
   constructor() { }
 
   ngAfterViewInit() {
+
+    if (!this.data || this.data.length === 0) { return; }
 
     const dataFirst = {
       data: this.data.map(row => row[1]),

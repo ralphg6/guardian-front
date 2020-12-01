@@ -4,7 +4,11 @@
     <p class="card-category">{{subtitle}}</p>
   </div>
   <div class="card-body">
-    <canvas #chart width="400" height="100"></canvas>
+    <div *ngIf="data === undefined" class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <span *ngIf="data && data.length === 0">{{emptyMessage}}</span>
+    <canvas *ngIf="data && data.length > 0" #chart width="400" height="100"></canvas>
   </div>
   <div class="card-footer">
     <hr/>

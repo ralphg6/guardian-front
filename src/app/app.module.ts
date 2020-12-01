@@ -2,6 +2,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
 
 import { SidebarModule } from './components/admin/sidebar/sidebar.module';
 import { FooterModule } from './shared/footer/footer.module';
@@ -17,7 +18,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
 
-const GOOGLE_CLIENT_ID = '1037085868223-k6nt4hoci7qf6nlv81f1ehn70d0bhpep.apps.googleusercontent.com';
+import { environment } from '../environments/environment';
 
 const SCOPES = [
   'profile',
@@ -30,11 +31,15 @@ const SCOPES = [
 const googleLoginOptions = {
   scope: SCOPES.join(' '),
 };
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
+
   ],
   imports: [
     BrowserAnimationsModule,
@@ -47,6 +52,7 @@ const googleLoginOptions = {
     FooterModule,
     FixedPluginModule,
     SocialLoginModule,
+    HttpClientModule,
   ],
   providers: [
     {
@@ -57,7 +63,7 @@ const googleLoginOptions = {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              GOOGLE_CLIENT_ID, googleLoginOptions
+              environment.GOOGLE_CLIENT_ID, googleLoginOptions
             )
           },
         ]
