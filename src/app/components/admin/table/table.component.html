@@ -3,8 +3,8 @@
     <h4 class="card-title">{{title}}</h4>
   </div>
   <div class="card-body">
-    <div class="table-responsive">
-      <table *ngIf="data" class="table">
+    <div *ngIf="data" class="table-responsive">
+      <table  class="table">
         <thead class=" text-primary">
           <th *ngFor="let header of data.headerRow">
             {{header}}

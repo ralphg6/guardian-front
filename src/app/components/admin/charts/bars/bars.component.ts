@@ -28,9 +28,14 @@ export class ChartBarsComponent implements AfterViewInit {
 
   constructor() { }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
+
+    console.log('this.data', this.data);
+    console.log('this.canvas', this.canvas);
 
     if (!this.data || this.data.length === 0) { return; }
+
+    if (!this.canvas) { return; }
 
     const dataFirst = {
       data: this.data.map(row => row[1]),

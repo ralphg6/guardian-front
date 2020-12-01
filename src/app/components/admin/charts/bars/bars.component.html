@@ -8,7 +8,7 @@
       <span class="sr-only">Loading...</span>
     </div>
     <span *ngIf="data && data.length === 0">{{emptyMessage}}</span>
-    <canvas *ngIf="data && data.length > 0" #chart width="400" height="100"></canvas>
+    <canvas *ngIf="data && data.length > 0" #chart [(ngModel)]="dataq" width="400" height="100"></canvas>
   </div>
   <div class="card-footer">
     <hr/>

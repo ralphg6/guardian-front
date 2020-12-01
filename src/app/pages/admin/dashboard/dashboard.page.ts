@@ -34,13 +34,9 @@ export class DashboardPageComponent implements OnInit {
 
   private analyzesPerDateSummary: any;
 
-
   constructor(private coursesService: CoursesService, private tasksService: TasksService, private authService: SocialAuthService) { }
 
   ngOnInit() {
-
-
-
     this.authService.authState.subscribe(async (user) => {
       if (user) {
         this.courses = await this.coursesService.fetchCourses(user);
@@ -79,24 +75,20 @@ export class DashboardPageComponent implements OnInit {
           dataRows: [],
         };
 
-        this.turmasTableData = {
-          headerRow: [],
-          dataRows: [],
-        };
-
-        this.atividadesPendentes = [];
+        let atividadesPendentes = [];
         if ('CREATED' in this.analyzesPerStateSummary) {
           const CREATED = Object.keys(this.analyzesPerStateSummary['CREATED'].dates).map(date => ([
             date, this.analyzesPerStateSummary['CREATED'].dates[date]
           ]));
-          this.atividadesPendentes = this.atividadesPendentes.concat(CREATED);
+          atividadesPendentes = atividadesPendentes.concat(CREATED);
         }
         if ('NEW' in this.analyzesPerStateSummary) {
           const NEW = Object.keys(this.analyzesPerStateSummary['NEW'].dates).map(date => ([
             date, this.analyzesPerStateSummary['NEW'].dates[date]
           ]));
-          this.atividadesPendentes = this.atividadesPendentes.concat(NEW);
+          atividadesPendentes = atividadesPendentes.concat(NEW);
         }
+        this.atividadesPendentes = atividadesPendentes;
 
         // console.log('this.atividadesPendentes', this.atividadesPendentes);
 
@@ -104,22 +96,23 @@ export class DashboardPageComponent implements OnInit {
 
         this.atrasadas = this.atividadesPendentes.filter(row => row[0] < today).map(row => row[1]).reduce((p, c) => p + c, 0);
 
-        this.atividadesEntregues = [];
+        let atividadesEntregues = [];
         if ('TURNED_IN' in this.analyzesPerStateSummary) {
           const TURNED_IN = Object.keys(this.analyzesPerStateSummary['TURNED_IN'].dates).map(date => ([
             date, this.analyzesPerStateSummary['TURNED_IN'].dates[date]
           ]));
-          this.atividadesEntregues = this.atividadesEntregues.concat(TURNED_IN);
+          atividadesEntregues = atividadesEntregues.concat(TURNED_IN);
         }
         if ('RETURNED' in this.analyzesPerStateSummary) {
           const RETURNED = Object.keys(this.analyzesPerStateSummary['RETURNED'].dates).map(date => ([
             date, this.analyzesPerStateSummary['RETURNED'].dates[date]
           ]));
-          this.atividadesEntregues = this.atividadesEntregues.concat(RETURNED);
+          atividadesEntregues = atividadesEntregues.concat(RETURNED);
         }
-
+        this.atividadesEntregues = atividadesEntregues;
         // console.log('this.atividadesEntregues', this.atividadesEntregues);
 
+        console.log('teste');
       }
     });
   }

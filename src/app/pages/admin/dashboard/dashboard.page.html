@@ -9,7 +9,7 @@
     <app-card-stats [label]="'Concluídas'" [icon]="'nc-paper text-success'" [value]="concluidas"></app-card-stats>
   </div>
 </div>
-<div class="row">
+<div *ngIf="atividadesPendentes && atividadesPendentes.length > 0" class="row">
   <div class="col-md-12">
     <app-chart-bars
       [title]="'Atividades Pendentes'"
@@ -18,7 +18,7 @@
       [data]="atividadesPendentes"></app-chart-bars>
   </div>
 </div>
-<div class="row">
+<div *ngIf="atividadesEntregues && atividadesEntregues.length > 0" class="row">
   <div class="col-md-12">
     <app-chart-bars
       [title]="'Atividades Entregues'"
