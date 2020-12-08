@@ -108,7 +108,7 @@ export class DashboardPageComponent implements OnInit {
           })
           atividadesPendentes = atividadesPendentes.concat(NEW);
         }
-        this.atividadesPendentes = atividadesPendentes;
+        this.atividadesPendentes = atividadesPendentes.sort((a, b) => a[0] - b[0]);
 
         // console.log('this.atividadesPendentes', this.atividadesPendentes);
 
