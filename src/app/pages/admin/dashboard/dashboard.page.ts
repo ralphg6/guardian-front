@@ -108,13 +108,15 @@ export class DashboardPageComponent implements OnInit {
           })
           atividadesPendentes = atividadesPendentes.concat(NEW);
         }
-        this.atividadesPendentes = atividadesPendentes.sort((a, b) => a[0] - b[0]);
+        this.atividadesPendentes = atividadesPendentes.sort((a, b) => b[0] - a[0]);
 
         // console.log('this.atividadesPendentes', this.atividadesPendentes);
 
         const today = moment().format('YYYY-MM-DD');
 
         this.atrasadas = this.atividadesPendentes.filter(row => row[0] < today).map(row => row[1]).reduce((p, c) => p + c, 0);
+
+        this.pendentes = this.pendentes - this.atrasadas;
 
         let atividadesEntregues = [];
         if ('TURNED_IN' in this.analyzesPerStateSummary) {
@@ -129,7 +131,7 @@ export class DashboardPageComponent implements OnInit {
           ]));
           atividadesEntregues = atividadesEntregues.concat(RETURNED);
         }
-        this.atividadesEntregues = atividadesEntregues;
+        this.atividadesEntregues = atividadesEntregues.sort((a, b) => b[0] - a[0]);;
         // console.log('this.atividadesEntregues', this.atividadesEntregues);
 
         console.log('teste');
