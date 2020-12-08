@@ -116,8 +116,6 @@ export class DashboardPageComponent implements OnInit {
 
         this.atrasadas = this.atividadesPendentes.filter(row => row[0] < today).map(row => row[1]).reduce((p, c) => p + c, 0);
 
-        this.pendentes = this.pendentes - this.atrasadas;
-
         let atividadesEntregues = [];
         if ('TURNED_IN' in this.analyzesPerStateSummary) {
           const TURNED_IN = Object.keys(this.analyzesPerStateSummary['TURNED_IN'].dates).map(date => ([
