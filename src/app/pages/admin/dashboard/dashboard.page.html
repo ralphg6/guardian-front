@@ -9,7 +9,7 @@
     <app-card-stats [label]="'Concluídas'" [icon]="'nc-paper text-success'" [value]="concluidas"></app-card-stats>
   </div>
 </div>
-<div *ngIf="pendentes > 0" class="row">
+<div *ngIf="pendentes > 0 || atrasadas > 0" class="row">
   <div class="col-md-12">
     <app-chart-bars
       [title]="'Atividades Pendentes'"
