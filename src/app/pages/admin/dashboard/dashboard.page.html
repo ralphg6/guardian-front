@@ -3,16 +3,19 @@
     <div class="card">
       <div class="card-header">
         <h5 class="card-title">Filtros</h5>
+        <!-- <button type="button" class="btn btn-success" (click)="changeShowFilters(true)" *ngIf="!showFilters">Mostrar
+          Filtros</button> -->
       </div>
-      <div class="card-body">
+      <div class="card-body" *ngIf="showFilters">
         <form>
           <div class="row">
             <div class="col-md-4 pr-1">
               <div class="form-group">
                 <label>Turmas</label>
-                 <div *ngFor="let course of courses">
+                <div *ngFor="let course of courses">
                   <label>
-                    <input type="checkbox" [checked]="selectedCourses.includes(course.id)" [value]="course.id" (change)="onCheckboxCourseChange($event)" />
+                    <input type="checkbox" [checked]="selectedCourses.includes(course.id)" [value]="course.id"
+                      (change)="onCheckboxCourseChange($event)" />
                     {{course.name}}
                   </label>
                 </div>
@@ -28,12 +31,19 @@
                 <select class="form-control" [value]="selectedPartial" (change)="changePartial($event)">
                   <option disabled>Selecione um bimestre</option>
                   <option [value]="''">Todos</option>
-                  <option *ngFor="let partial of partials" [value]="partial.uuid" >{{partial.title}} ({{partial.begin}} a {{partial.until}})</option>
+                  <option *ngFor="let partial of partials" [value]="partial.uuid">{{partial.title}} ({{partial.begin}} a
+                    {{partial.until}})</option>
                 </select>
               </div>
             </div>
           </div>
         </form>
+        <!-- <div class="row">
+          <div class="col-md-3 pr-1">
+            <button type="button" class="btn btn-success" (click)="changeShowFilters(false)" *ngIf="showFilters">Ocultar
+              Filtros</button>
+          </div>
+        </div> -->
       </div>
       <div class="card-footer">
         <!-- <hr>

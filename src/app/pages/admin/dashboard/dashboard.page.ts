@@ -42,6 +42,8 @@ export class DashboardPageComponent implements OnInit {
   user: SocialUser;
   private selectedCourses: string[] = [];
 
+  private showFilters = true;
+
   constructor(
     private storage: StorageMap,
     private coursesService: CoursesService,
@@ -198,6 +200,10 @@ export class DashboardPageComponent implements OnInit {
     // this.selectedCourses = e.target.value;
     await this.persistSelectedCourses();
     await this.fetchData();
+  }
+
+  changeShowFilters(show) {
+    this.showFilters = show;
   }
 
 }
