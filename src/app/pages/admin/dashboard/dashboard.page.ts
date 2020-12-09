@@ -86,6 +86,7 @@ export class DashboardPageComponent implements OnInit {
 
   private async fetchData() {
     this.clear();
+    const courses = this.courses.filter((c) => this.selectedCourses.includes(c.id));
     this.partial = await this.yearPartialsService.getPartial(this.user, this.selectedPartial) || {
       uuid: null,
       begin: null,
@@ -96,14 +97,14 @@ export class DashboardPageComponent implements OnInit {
     this.turmasTableData = {
       headers: ['Nome'],
       cols: ['name'],
-      rows: this.courses.filter(c => c.courseState === 'ACTIVE'),
+      rows: courses.filter(c => c.courseState === 'ACTIVE'),
       id: 'id',
     };
-    await Promise.all(this.courses.map(c => this.tasksService.fetchTasks(this.user, c)));
-    await Promise.all(this.courses.map(c => this.tasksService.analyzeTasks(c, this.partial.begin, this.partial.until)));
-    this.analyzesPerState = this.tasksService.analyzesPerState(this.courses);
+    await Promise.all(courses.map(c => this.tasksService.fetchTasks(this.user, c)));
+    await Promise.all(courses.map(c => this.tasksService.analyzeTasks(c, this.partial.begin, this.partial.until)));
+    this.analyzesPerState = this.tasksService.analyzesPerState(courses);
     this.analyzesPerStateSummary = this.tasksService.analyzesPerStateSummary(this.analyzesPerState);
-    this.analyzesPerDate = this.tasksService.analyzesPerDate(this.courses);
+    this.analyzesPerDate = this.tasksService.analyzesPerDate(courses);
     this.analyzesPerDateSummary = this.tasksService.analyzesPerDateSummary(this.analyzesPerDate);
 
     // console.log('this.analyzesPerStateSummary', this.analyzesPerStateSummary);
