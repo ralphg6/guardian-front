@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 export declare interface TableData {
-  headerRow: string[];
-  dataRows: string[][];
+  headers: string[];
+  rows: any[];
+  cols: string[];
+  id: string;
 }
 
 @Component({
@@ -16,5 +18,12 @@ export class TableComponent implements OnInit {
   title: string;
   @Input()
   public data: TableData;
-  ngOnInit() {}
+  @Input()
+  public excluir: Function;
+  @Input()
+  public editar: Function;
+  public hasActions = false;
+  ngOnInit(): void {
+    this.hasActions = this.excluir !== undefined || this.editar !== undefined;
+  }
 }

@@ -6,14 +6,21 @@
     <div *ngIf="data" class="table-responsive">
       <table  class="table">
         <thead class=" text-primary">
-          <th *ngFor="let header of data.headerRow">
+          <th *ngFor="let header of data.headers">
             {{header}}
+          </th>
+          <th *ngIf="hasActions">
+            Ações
           </th>
         </thead>
         <tbody>
-          <tr *ngFor="let row of data.dataRows">
-            <td *ngFor="let col of row">
-              {{col}}
+          <tr *ngFor="let row of data.rows">
+            <td *ngFor="let col of data.cols">
+              {{row[col]}}
+            </td>
+            <td *ngIf="hasActions">
+              <a href="#" *ngIf="editar" (click)="editar(row)" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>&nbsp;
+              <a href="#" *ngIf="excluir" (click)="excluir(row)" title="Excluir"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;
             </td>
           </tr>
         </tbody>
@@ -21,9 +28,9 @@
     </div>
   </div>
   <div class="card-footer">
-    <hr/>
+    <!-- <hr/>
     <div class="card-stats">
       <i class="fa fa-refresh"></i> Atualizar
-    </div>
+    </div> -->
   </div>
 </div>

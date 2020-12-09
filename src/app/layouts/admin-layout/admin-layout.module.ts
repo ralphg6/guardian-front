@@ -20,6 +20,7 @@ import { ChartBarsComponent } from '../../components/admin/charts/bars/bars.comp
 
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { YearPartialsPageComponent } from 'app/pages/admin/yearpartials/year-partials.page';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   declarations: [
     DashboardPageComponent,
+    YearPartialsPageComponent,
     // UserComponent,
     // UpgradeComponent,
     // TypographyComponent,

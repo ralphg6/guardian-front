@@ -4,19 +4,14 @@ import { StorageMap } from '@ngx-pwa/local-storage';
 import { SocialUser } from 'angularx-social-login';
 import { HttpClient } from '@angular/common/http';
 
-const
-  BEGIN = '2020-11-27',
-  UNTIL = false
-  ;
-
 function getUpdateDate(submission) {
   return submission.updateTime ? submission.updateTime.split('T')[0] : 'WITHOUT_DATE';
 }
 
-const isIncludedSubmission = (submission: any) => {
+const isIncludedSubmission = (submission: any, begin?: string, until?: string) => {
   const updateDate = getUpdateDate(submission);
-  if (BEGIN && updateDate !== 'WITHOUT_DATE' && updateDate < BEGIN) { return false; }
-  if (UNTIL && updateDate !== 'WITHOUT_DATE' && updateDate > UNTIL) { return false; }
+  if (begin && updateDate !== 'WITHOUT_DATE' && updateDate < begin) { return false; }
+  if (until && updateDate !== 'WITHOUT_DATE' && updateDate > until) { return false; }
   return true;
 };
 
@@ -113,7 +108,7 @@ export class TasksService {
     }
   }
 
-  async analyzeTasks(course) {
+  async analyzeTasks(course, begin?: string, until?: string) {
     const tasksAnalyze = {};
 
     course.tasks.forEach((task) => {
@@ -123,16 +118,27 @@ export class TasksService {
       const submission = task.submissions[0];
       // console.log("task", task);
 
-      if (isIncludedSubmission(submission)) {
+      if (isIncludedSubmission(submission, begin, until)) {
         const updateDate = getUpdateDate(submission);
         task.updateDate = updateDate;
-
-        if (!tasksAnalyze[submission.state]) { tasksAnalyze[submission.state] = {}; }
-        if (!tasksAnalyze[submission.state][updateDate]) {
-          tasksAnalyze[submission.state][updateDate] = [];
+        if (task.dueDate) {
+          const month = `${task.dueDate.month}`.length === 1 ? `0${task.dueDate.month}` : `${task.dueDate.month}`;
+          const day = `${task.dueDate.day}`.length === 1 ? `0${task.dueDate.day}` : `${task.dueDate.day}`;
+          task.dueDateDate = task.dueDate ?
+            `${task.dueDate.year}-${month}-${day}` :
+            task.updateDate;
+        } else {
+          task.dueDateDate = task.updateDate;
         }
 
-        tasksAnalyze[submission.state][updateDate].push(task);
+        const date = ['NEW', 'CREATED'].includes(submission.state) ? task.dueDateDate : task.updateDate;
+
+        if (!tasksAnalyze[submission.state]) { tasksAnalyze[submission.state] = {}; }
+        if (!tasksAnalyze[submission.state][date]) {
+          tasksAnalyze[submission.state][date] = [];
+        }
+
+        tasksAnalyze[submission.state][date].push(task);
       }
     });
 

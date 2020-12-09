@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { YearPartialsPageComponent } from 'app/pages/admin/yearpartials/year-partials.page';
 
 import { DashboardPageComponent } from '../../pages/admin/dashboard/dashboard.page';
 // import { UserComponent } from '../../pages/admin/user/user.component';
@@ -11,6 +12,7 @@ import { DashboardPageComponent } from '../../pages/admin/dashboard/dashboard.pa
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardPageComponent },
+    { path: 'year-partials',      component: YearPartialsPageComponent },
     // { path: 'user',           component: UserComponent },
     // // { path: 'table',          component: TableComponent },
     // { path: 'typography',     component: TypographyComponent },

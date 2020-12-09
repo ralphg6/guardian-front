@@ -1,4 +1,50 @@
 <div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Filtros</h5>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="row">
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <label>Turmas</label>
+                 <div *ngFor="let course of courses">
+                  <label>
+                    <input type="checkbox" [checked]="selectedCourses.includes(course.id)" [value]="course.id" (change)="onCheckboxCourseChange($event)" />
+                    {{course.name}}
+                  </label>
+                </div>
+                <!-- <select class="form-control" [value]="selectedCourses" (change)="changeCourses($event)" multiple>
+                  <option disabled>Escolha quais turmas analizar</option>
+                  <option *ngFor="let course of courses" [value]="course.id">{{course.name}}</option>
+                </select> -->
+              </div>
+            </div>
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <label>Bimestre</label>
+                <select class="form-control" [value]="selectedPartial" (change)="changePartial($event)">
+                  <option disabled>Selecione um bimestre</option>
+                  <option [value]="''">Todos</option>
+                  <option *ngFor="let partial of partials" [value]="partial.uuid" >{{partial.title}} ({{partial.begin}} a {{partial.until}})</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <!-- <hr>
+      <div class="stats">
+        <i class="fa fa-refresh"></i> Atualizar
+      </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
   <div class="col-lg-4 col-md-6 col-sm-6">
     <app-card-stats [label]="'Pendentes'" [icon]="'nc-paper text-warning'" [value]="pendentes"></app-card-stats>
   </div>
@@ -11,20 +57,14 @@
 </div>
 <div *ngIf="pendentes > 0" class="row">
   <div class="col-md-12">
-    <app-chart-bars
-      [title]="'Atividades Pendentes'"
-      [subtitle]="'Atividades não entregues por data'"
-      [emptyMessage]="'Não existem tarefas pendentes'"
-      [data]="atividadesPendentes"></app-chart-bars>
+    <app-chart-bars [title]="'Atividades Pendentes'" [subtitle]="'Atividades não entregues por data'"
+      [emptyMessage]="'Não existem tarefas pendentes'" [data]="atividadesPendentes"></app-chart-bars>
   </div>
 </div>
 <div *ngIf="concluidas > 0" class="row">
   <div class="col-md-12">
-    <app-chart-bars
-      [title]="'Atividades Entregues'"
-      [subtitle]="'Atividades entregues por data'"
-      [emptyMessage]="'Não existem tarefas entregues'"
-      [data]="atividadesEntregues"></app-chart-bars>
+    <app-chart-bars [title]="'Atividades Entregues'" [subtitle]="'Atividades entregues por data'"
+      [emptyMessage]="'Não existem tarefas entregues'" [data]="atividadesEntregues"></app-chart-bars>
   </div>
 </div>
 <div *ngIf="pendentes > 0" class="row">
