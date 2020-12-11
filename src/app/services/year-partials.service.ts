@@ -24,15 +24,15 @@ export class YearPartialsService {
       const partials: Partial[] = await this.storage.get(`partials-${user.id}`).toPromise() as Partial[] || [];
       if (partials.length === 0) {
         partials.push({
-          begin: '2020-07-01',
+          begin: '2020-02-10',
           title: '1º Bimestre',
-          until: '2020-08-18',
+          until: '2020-08-05',
           uuid: uuidv4(),
         });
         partials.push({
-          begin: '2020-08-19',
+          begin: '2020-08-06',
           title: '2º Bimestre',
-          until: '2020-10-04',
+          until: '2020-09-25',
           uuid: uuidv4(),
         });
         partials.push({

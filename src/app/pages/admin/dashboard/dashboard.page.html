@@ -9,7 +9,7 @@
       <div class="card-body" *ngIf="showFilters">
         <form>
           <div class="row">
-            <div class="col-md-4 pr-1">
+            <div class="col-md-4 pr-1" *ngIf="courses.length > 1">
               <div class="form-group">
                 <label>Turmas</label>
                 <div *ngFor="let course of courses">
