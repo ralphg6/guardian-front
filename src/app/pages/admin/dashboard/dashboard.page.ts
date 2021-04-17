@@ -32,7 +32,9 @@ export class DashboardPageComponent implements OnInit {
 
   private atividadesEntregues: any[];
 
-  private courses: any;
+  public courses: any;
+
+  public filters;
 
   private analyzesPerState: any;
 
@@ -47,7 +49,7 @@ export class DashboardPageComponent implements OnInit {
   partial: Partial;
   user: SocialUser;
   private selectedCourses: string[] = [];
-
+  public allFiltersChecked: boolean = false;
   private showFilters = false;
 
   constructor(
@@ -67,11 +69,38 @@ export class DashboardPageComponent implements OnInit {
         console.log('this.courses', this.courses);
         this.partials = await this.yearPartialsService.listPartials(this.user);
         console.log('this.partials', this.partials);
+        this.initFilters();
         this.selectedPartial = (await this.yearPartialsService.getCurrentPartial(this.user)).uuid;
         await this.getLoadSelectedCourses();
         await this.fetchData();
       }
     });
+  }
+
+  private initFilters() {
+    this.filters = {
+      marked: false,
+      courses: this.courses,
+    }
+  }
+
+  updateAllFilters() {
+    this.allFiltersChecked = this.filters.courses != null && this.filters.courses.every(course => course.marked);
+  }
+
+  someFilter() {
+    if (this.filters.courses == null) {
+      return false;
+    }
+    return this.filters.courses.filter(course => course.marked).length > 0 && !this.allFiltersChecked;
+  }
+
+  setAllFilters(marked: boolean) {
+    this.allFiltersChecked = marked;
+    if (this.filters.courses == null) {
+      return;
+    }
+    this.filters.courses.forEach(course => course.marked = marked);
   }
 
   async getLoadSelectedCourses(): Promise<void> {
@@ -190,7 +219,6 @@ export class DashboardPageComponent implements OnInit {
     this.atividadesEntregues = atividadesEntregues.sort((a, b) => a[0] > b[0] ? 1 : -1);
     // console.log('this.atividadesEntregues', this.atividadesEntregues);
     // console.log('teste');
-
   }
 
   async changePartial(e: any) {

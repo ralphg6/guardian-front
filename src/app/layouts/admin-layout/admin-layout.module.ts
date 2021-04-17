@@ -24,6 +24,9 @@ import { YearPartialsPageComponent } from 'app/pages/admin/yearpartials/year-par
 import { MatCardModule } from '@angular/material/card';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { MatTableModule } from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatButtonModule} from '@angular/material/button';
+import {MatRippleModule} from '@angular/material/core';
 
 @NgModule({
   imports: [
@@ -34,6 +37,9 @@ import { MatTableModule } from '@angular/material/table';
     MatCardModule,
     NgxSkeletonLoaderModule,
     MatTableModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatRippleModule,
   ],
   declarations: [
     DashboardPageComponent,
