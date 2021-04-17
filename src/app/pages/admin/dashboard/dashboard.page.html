@@ -1,7 +1,29 @@
 <!-- FILTERS -->
-<div class="row" *ngIf="courses">
+<div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12">
-    <mat-card class="mb-3">
+    <!-- Skeleton -->
+    <mat-card *ngIf="!courses">
+      <mat-card-header>
+        <ngx-skeleton-loader *ngIf="!courses" [theme]="{
+          width: '61px',
+          height: '30px',
+          'border-radius': '0'
+        }">
+        </ngx-skeleton-loader>
+
+        <span class="spacer"></span>
+
+        <ngx-skeleton-loader *ngIf="!courses" [theme]="{
+          width: '30px',
+          height: '30px',
+          'border-radius': '0'
+        }">
+        </ngx-skeleton-loader>
+      </mat-card-header>
+    </mat-card>
+
+    <!-- Content -->
+    <mat-card class="mb-3" *ngIf="courses">
       <mat-card-header (click)="showFilters = !showFilters">
         <h5 class="card-title">Filtros</h5>
         <span class="spacer"></span>
@@ -55,8 +77,6 @@
       </div> -->
       </mat-card-footer>
     </mat-card>
-
-
   </div>
 </div>
 

@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardStatsComponent implements OnInit {
 
-  public isLoading = true;
+  public isLoading = false;
 
   @Input()
   label: string;
