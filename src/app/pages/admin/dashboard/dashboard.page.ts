@@ -15,8 +15,6 @@ import { StorageMap } from '@ngx-pwa/local-storage';
 })
 export class DashboardPageComponent implements OnInit {
 
-
-
   private atrasadas: any = false;
   private concluidas: any = false;
   private pendentes: any = false;
