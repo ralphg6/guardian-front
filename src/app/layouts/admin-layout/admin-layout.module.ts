@@ -21,6 +21,7 @@ import { ChartBarsComponent } from '../../components/admin/charts/bars/bars.comp
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { YearPartialsPageComponent } from 'app/pages/admin/yearpartials/year-partials.page';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { YearPartialsPageComponent } from 'app/pages/admin/yearpartials/year-par
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
     NgbModule,
+    MatCardModule,
   ],
   declarations: [
     DashboardPageComponent,
