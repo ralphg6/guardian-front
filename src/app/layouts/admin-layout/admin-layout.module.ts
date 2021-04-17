@@ -22,6 +22,7 @@ import { ChartBarsComponent } from '../../components/admin/charts/bars/bars.comp
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { YearPartialsPageComponent } from 'app/pages/admin/yearpartials/year-partials.page';
 import { MatCardModule } from '@angular/material/card';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { MatCardModule } from '@angular/material/card';
     FormsModule,
     NgbModule,
     MatCardModule,
+    NgxSkeletonLoaderModule,
   ],
   declarations: [
     DashboardPageComponent,

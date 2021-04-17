@@ -1,26 +1,31 @@
-<div class="card card-stats">
-  <div class="card-body ">
-    <div class="row">
-      <div class="col-5 col-md-4">
-        <div class="icon-big text-center icon-warning">
-          <i class="nc-icon {{icon}}"></i>
-        </div>
-      </div>
-      <div class="col-7 col-md-8">
-        <div class="numbers">
-          <p class="card-category">{{label}}</p>
-          <p *ngIf="value !== false" class="card-title">{{value}}</p>
-          <div *ngIf="value === false" class="spinner-border" role="status">
+<mat-card class="my-3" class="card-stats-container">
+  <mat-card-content class="card-stats-content">
+    <i *ngIf="!isLoading" class="nc-icon {{icon}}"></i>
+    <!-- <p *ngIf="!isLoading">{{value}}</p> -->
+    <p *ngIf="!isLoading">30</p>
+    <ngx-skeleton-loader *ngIf="isLoading" [theme]="{
+        width: '150px',
+        height: '30px',
+        'border-radius': '0',
+        margin: '0 0 9px 12px'
+      }">
+    </ngx-skeleton-loader>
+
+  </mat-card-content>
+  <mat-card-footer class="card-stats-footer">
+    <p *ngIf="!isLoading" class="card-category">{{label}}</p>
+    <ngx-skeleton-loader *ngIf="isLoading" [theme]="{
+        width: '200px',
+        height: '32px',
+        'border-radius': '0',
+        'margin-left': '16px'
+      }"></ngx-skeleton-loader>
+
+  </mat-card-footer>
+</mat-card>
+
+
+<!-- LOADING -->
+<!-- <div *ngIf="value === false" class="spinner-border" role="status">
             <span class="sr-only">Loading...</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-footer">
-    <!-- <hr>
-    <div class="stats">
-      <i class="fa fa-refresh"></i> Atualizar
-    </div> -->
-  </div>
-</div>
+          </div> -->
