@@ -10,9 +10,12 @@ import { StorageMap } from '@ngx-pwa/local-storage';
 @Component({
   selector: 'dashboard-cmp',
   moduleId: module.id,
-  templateUrl: 'dashboard.page.html'
+  templateUrl: 'dashboard.page.html',
+  styleUrls: ['./dashboard.page.css']
 })
 export class DashboardPageComponent implements OnInit {
+
+
 
   private atrasadas: any = false;
   private concluidas: any = false;
@@ -42,7 +45,7 @@ export class DashboardPageComponent implements OnInit {
   user: SocialUser;
   private selectedCourses: string[] = [];
 
-  private showFilters = true;
+  private showFilters = false;
 
   constructor(
     private storage: StorageMap,
@@ -58,7 +61,9 @@ export class DashboardPageComponent implements OnInit {
       if (user) {
         this.user = user;
         this.courses = await this.coursesService.fetchCourses(this.user);
+        console.log('this.courses', this.courses);
         this.partials = await this.yearPartialsService.listPartials(this.user);
+        console.log('this.partials', this.partials);
         this.selectedPartial = (await this.yearPartialsService.getCurrentPartial(this.user)).uuid;
         await this.getLoadSelectedCourses();
         await this.fetchData();
