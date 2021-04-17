@@ -23,6 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { YearPartialsPageComponent } from 'app/pages/admin/yearpartials/year-partials.page';
 import { MatCardModule } from '@angular/material/card';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     NgbModule,
     MatCardModule,
     NgxSkeletonLoaderModule,
+    MatTableModule,
   ],
   declarations: [
     DashboardPageComponent,
