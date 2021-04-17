@@ -25,9 +25,9 @@ export class TableComponent implements OnInit {
 
   public hasActions = false;
 
-  public dataSource: any[] = [];
-  public columns: string[] = [];
-  public properties: string[] = [];
+  public displayedColumns: string[];
+  public dataSource = [];
+  public properties: string[];
 
   ngOnInit(): void {
     console.log('TABLE DATA: ', this.data);
@@ -36,8 +36,9 @@ export class TableComponent implements OnInit {
   }
 
   private initTable() {
-    this.dataSource = this.data.rows;
-    this.columns = this.data.cols;
-    this.properties = this.data.headers;
+    const { headers, rows, cols } = this.data;
+    this.dataSource = rows;
+    this.displayedColumns = headers;
+    this.properties = cols;
   }
 }

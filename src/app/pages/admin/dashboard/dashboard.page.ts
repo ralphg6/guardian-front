@@ -21,7 +21,12 @@ export class DashboardPageComponent implements OnInit {
 
   private pendentesTableData: TableData;
 
-  private turmasTableData: TableData;
+  public turmasTableData: TableData = {
+    headers: ['colA', 'colB'],
+    rows: [{ colA: 'row A col A', colB: 'row A col B' }, { colA: 'row B col A', colB: 'row B col B' }],
+    cols: ['colA', 'colB'],
+    id: '123'
+  }
 
   private atividadesPendentes: any[];
 
