@@ -50,7 +50,6 @@ export class DashboardPageComponent implements OnInit {
   user: SocialUser;
   private selectedCourses: string[] = [];
   public allFiltersChecked: boolean = false;
-  private showFilters = false;
 
   constructor(
     private storage: StorageMap,
@@ -66,9 +65,7 @@ export class DashboardPageComponent implements OnInit {
       if (user) {
         this.user = user;
         this.courses = await this.coursesService.fetchCourses(this.user);
-        console.log('this.courses', this.courses);
         this.partials = await this.yearPartialsService.listPartials(this.user);
-        console.log('this.partials', this.partials);
         this.initFilters();
         this.selectedPartial = (await this.yearPartialsService.getCurrentPartial(this.user)).uuid;
         await this.getLoadSelectedCourses();
@@ -92,6 +89,7 @@ export class DashboardPageComponent implements OnInit {
     if (this.filters.courses == null) {
       return false;
     }
+    console.log('SOME')
     return this.filters.courses.filter(course => course.marked).length > 0 && !this.allFiltersChecked;
   }
 
