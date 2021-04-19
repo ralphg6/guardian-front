@@ -2,18 +2,18 @@
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12">
     <!-- Skeleton -->
-    <mat-card *ngIf="!courses">
+    <mat-card *ngIf="!courses" class="mb-3 pb-0">
       <div mat-card-header class="d-flex justify-content-between">
-        <ngx-skeleton-loader *ngIf="!courses" [theme]="{
+        <ngx-skeleton-loader [theme]="{
           width: '61px',
-          height: '20px',
+          height: '1.57em',
           'border-radius': '0'
         }">
         </ngx-skeleton-loader>
-
-        <ngx-skeleton-loader *ngIf="!courses" [theme]="{
-          width: '30px',
-          height: '20px',
+        <span style="height: 42px"></span>
+        <ngx-skeleton-loader [theme]="{
+          width: '17px',
+          height: '1.57em',
           'border-radius': '0'
         }">
         </ngx-skeleton-loader>
@@ -21,24 +21,25 @@
     </mat-card>
 
     <!-- Content -->
-    <mat-card *ngIf="courses" class="mb-3" matRipple [matRippleTrigger]="trigger">
-      <div mat-card-header #trigger class="d-flex justify-content-between" style="cursor: pointer" (click)="showFilters = !showFilters">
+    <mat-card *ngIf="courses" class="mb-3 pb-0" matRipple [matRippleTrigger]="trigger">
+      <div mat-card-header #trigger class="d-flex justify-content-between" style="cursor: pointer"
+        (click)="showFilters = !showFilters">
         <h5 class="card-title">Filtros</h5>
-        <i class="fa fa-filter fa-lg text-secondary"></i>
+        <i class="fa fa-filter text-secondary" style="font-size: 1.57em;"></i>
       </div>
-      <mat-card-content *ngIf="showFilters" class="d-flex flex-column pl-4 mt-3">
+      <mat-divider></mat-divider>
+      <mat-card-content *ngIf="showFilters" class="d-flex flex-column pl-4 mb-3 mt-3">
         <div class="col-2">
           <mat-checkbox [checked]="allFiltersChecked" [indeterminate]="someFilter()"
             (change)="setAllFilters($event.checked)">
             <strong>Todos</strong>
           </mat-checkbox>
-          <mat-checkbox class="ml-4 text-dark" *ngFor="let course of courses" [(ngModel)]="course.marked"
+          <mat-checkbox class="ml-3 text-dark" *ngFor="let course of courses" [(ngModel)]="course.marked"
             (ngModelChange)="updateAllFilters()">
             {{course.name}}
           </mat-checkbox>
         </div>
       </mat-card-content>
-      <mat-card-footer></mat-card-footer>
     </mat-card>
   </div>
 </div>
