@@ -1,36 +1,22 @@
-<div class="card">
-  <div class="card-header">
-    <h4 class="card-title">{{title}}</h4>
-  </div>
-  <div class="card-body">
-    <div *ngIf="data" class="table-responsive">
-      <table  class="table">
-        <thead class=" text-primary">
-          <th *ngFor="let header of data.headers">
-            {{header}}
-          </th>
-          <th *ngIf="hasActions">
-            Ações
-          </th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let row of data.rows">
-            <td *ngFor="let col of data.cols">
-              {{row[col]}}
-            </td>
-            <td *ngIf="hasActions">
-              <a href="#" *ngIf="editar" (click)="editar(row)" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>&nbsp;
-              <a href="#" *ngIf="excluir" (click)="excluir(row)" title="Excluir"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="card-footer">
-    <!-- <hr/>
-    <div class="card-stats">
-      <i class="fa fa-refresh"></i> Atualizar
-    </div> -->
-  </div>
-</div>
+<mat-card>
+  <mat-card-header class="d-block">
+    <h3>{{title}}</h3>
+    <p *ngIf="!dataSource">Você precisa filtrar uma turma</p>
+  </mat-card-header>
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource" class="w-100">
+      <ng-container [matColumnDef]="colName" *ngFor="let colName of properties; let i = index">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ columns[i] }}
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element[colName] }}</td>
+
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+
+  </mat-card-content>
+</mat-card>

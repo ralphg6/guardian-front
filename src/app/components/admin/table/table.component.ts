@@ -22,8 +22,23 @@ export class TableComponent implements OnInit {
   public excluir: Function;
   @Input()
   public editar: Function;
+
   public hasActions = false;
+
+  public displayedColumns: string[];
+  public dataSource = [];
+  public properties: string[];
+
   ngOnInit(): void {
+    console.log('TABLE DATA: ', this.data);
     this.hasActions = this.excluir !== undefined || this.editar !== undefined;
+    this.initTable();
+  }
+
+  private initTable() {
+    const { headers, rows, cols } = this.data;
+    this.dataSource = rows;
+    this.displayedColumns = headers;
+    this.properties = cols;
   }
 }

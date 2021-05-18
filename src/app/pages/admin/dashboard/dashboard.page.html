@@ -1,71 +1,66 @@
+<!-- FILTERS -->
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12">
-    <div class="card">
-      <div class="card-header">
+    <!-- Skeleton -->
+    <mat-card *ngIf="!courses" class="mb-3 pb-0">
+      <div mat-card-header class="d-flex justify-content-between">
+        <ngx-skeleton-loader [theme]="{
+          width: '61px',
+          height: '1.57em',
+          'border-radius': '0'
+        }">
+        </ngx-skeleton-loader>
+        <span style="height: 42px"></span>
+        <ngx-skeleton-loader [theme]="{
+          width: '17px',
+          height: '1.57em',
+          'border-radius': '0'
+        }">
+        </ngx-skeleton-loader>
+      </div>
+    </mat-card>
+
+    <!-- Content -->
+    <mat-card *ngIf="courses" class="mb-3 pb-0" matRipple [matRippleTrigger]="trigger">
+      <div mat-card-header #trigger class="d-flex justify-content-between" style="cursor: pointer"
+        (click)="showFilters = !showFilters">
         <h5 class="card-title">Filtros</h5>
-        <!-- <button type="button" class="btn btn-success" (click)="changeShowFilters(true)" *ngIf="!showFilters">Mostrar
-          Filtros</button> -->
+        <i class="fa fa-filter text-secondary" style="font-size: 1.57em;"></i>
       </div>
-      <div class="card-body" *ngIf="showFilters">
-        <form>
-          <div class="row">
-            <div class="col-md-4 pr-1" *ngIf="courses.length > 1">
-              <div class="form-group">
-                <label>Turmas</label>
-                <div *ngFor="let course of courses">
-                  <label>
-                    <input type="checkbox" [checked]="selectedCourses.includes(course.id)" [value]="course.id"
-                      (change)="onCheckboxCourseChange($event)" />
-                    {{course.name}}
-                  </label>
-                </div>
-                <!-- <select class="form-control" [value]="selectedCourses" (change)="changeCourses($event)" multiple>
-                  <option disabled>Escolha quais turmas analizar</option>
-                  <option *ngFor="let course of courses" [value]="course.id">{{course.name}}</option>
-                </select> -->
-              </div>
-            </div>
-            <div class="col-md-4 pr-1">
-              <div class="form-group">
-                <label>Bimestre</label>
-                <select class="form-control" [value]="selectedPartial" (change)="changePartial($event)">
-                  <option disabled>Selecione um bimestre</option>
-                  <option [value]="''">Todos</option>
-                  <option *ngFor="let partial of partials" [value]="partial.uuid">{{partial.title}} ({{partial.begin}} a
-                    {{partial.until}})</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </form>
-        <!-- <div class="row">
-          <div class="col-md-3 pr-1">
-            <button type="button" class="btn btn-success" (click)="changeShowFilters(false)" *ngIf="showFilters">Ocultar
-              Filtros</button>
-          </div>
-        </div> -->
-      </div>
-      <div class="card-footer">
-        <!-- <hr>
-      <div class="stats">
-        <i class="fa fa-refresh"></i> Atualizar
-      </div> -->
-      </div>
-    </div>
+      <mat-divider></mat-divider>
+      <mat-card-content *ngIf="showFilters" class="d-flex flex-column pl-4 mb-3 mt-3">
+        <div class="col-2">
+          <mat-checkbox [checked]="allFiltersChecked" [indeterminate]="someFilter()"
+            (change)="setAllFilters($event.checked)">
+            <strong>Todos</strong>
+          </mat-checkbox>
+          <mat-checkbox class="ml-3 text-dark" *ngFor="let course of courses" [(ngModel)]="course.marked"
+            (ngModelChange)="updateAllFilters()">
+            {{course.name}}
+          </mat-checkbox>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>
+
+<!-- CARDS -->
 <div class="row">
-  <div class="col-lg-4 col-md-6 col-sm-6">
+  <div class="col-lg-4 col-md-6 col-sm-12">
     <app-card-stats [label]="'Pendentes'" [icon]="'nc-paper text-warning'" [value]="pendentes"></app-card-stats>
   </div>
-  <div class="col-lg-4 col-md-6 col-sm-6">
+
+  <div class="col-lg-4 col-md-6 col-sm-12">
     <app-card-stats [label]="'Atrasadas'" [icon]="'nc-paper text-danger'" [value]="atrasadas"></app-card-stats>
   </div>
-  <div class="col-lg-4 col-md-6 col-sm-6">
+
+  <div class="col-lg-4 col-md-6 col-sm-12">
     <app-card-stats [label]="'Concluídas'" [icon]="'nc-paper text-success'" [value]="concluidas"></app-card-stats>
   </div>
 </div>
-<div *ngIf="pendentes > 0" class="row">
+
+<!-- DATA VIEW -->
+<!-- <div *ngIf="pendentes > 0" class="row">
   <div class="col-md-12">
     <app-chart-bars [title]="'Atividades Pendentes'" [subtitle]="'Atividades não entregues por data'"
       [emptyMessage]="'Não existem tarefas pendentes'" [data]="atividadesPendentes"></app-chart-bars>
@@ -86,4 +81,4 @@
   <div class="col-md-12">
     <app-table [title]="'Turmas'" [data]="turmasTableData"></app-table>
   </div>
-</div>
+</div> -->

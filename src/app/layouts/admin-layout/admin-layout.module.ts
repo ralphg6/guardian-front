@@ -21,6 +21,13 @@ import { ChartBarsComponent } from '../../components/admin/charts/bars/bars.comp
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { YearPartialsPageComponent } from 'app/pages/admin/yearpartials/year-partials.page';
+import { MatCardModule } from '@angular/material/card';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { MatTableModule } from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatButtonModule} from '@angular/material/button';
+import {MatRippleModule} from '@angular/material/core';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   imports: [
@@ -28,6 +35,13 @@ import { YearPartialsPageComponent } from 'app/pages/admin/yearpartials/year-par
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
     NgbModule,
+    MatCardModule,
+    NgxSkeletonLoaderModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatRippleModule,
+    MatDividerModule,
   ],
   declarations: [
     DashboardPageComponent,

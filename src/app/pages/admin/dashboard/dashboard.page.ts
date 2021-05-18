@@ -10,7 +10,8 @@ import { StorageMap } from '@ngx-pwa/local-storage';
 @Component({
   selector: 'dashboard-cmp',
   moduleId: module.id,
-  templateUrl: 'dashboard.page.html'
+  templateUrl: 'dashboard.page.html',
+  styleUrls: ['./dashboard.page.css']
 })
 export class DashboardPageComponent implements OnInit {
 
@@ -20,13 +21,20 @@ export class DashboardPageComponent implements OnInit {
 
   private pendentesTableData: TableData;
 
-  private turmasTableData: TableData;
+  public turmasTableData: TableData = {
+    headers: ['colA', 'colB'],
+    rows: [{ colA: 'row A col A', colB: 'row A col B' }, { colA: 'row B col A', colB: 'row B col B' }],
+    cols: ['colA', 'colB'],
+    id: '123'
+  }
 
   private atividadesPendentes: any[];
 
   private atividadesEntregues: any[];
 
-  private courses: any;
+  public courses: any;
+
+  public filters;
 
   private analyzesPerState: any;
 
@@ -41,8 +49,7 @@ export class DashboardPageComponent implements OnInit {
   partial: Partial;
   user: SocialUser;
   private selectedCourses: string[] = [];
-
-  private showFilters = true;
+  public allFiltersChecked: boolean = false;
 
   constructor(
     private storage: StorageMap,
@@ -59,11 +66,39 @@ export class DashboardPageComponent implements OnInit {
         this.user = user;
         this.courses = await this.coursesService.fetchCourses(this.user);
         this.partials = await this.yearPartialsService.listPartials(this.user);
+        this.initFilters();
         this.selectedPartial = (await this.yearPartialsService.getCurrentPartial(this.user)).uuid;
         await this.getLoadSelectedCourses();
         await this.fetchData();
       }
     });
+  }
+
+  private initFilters() {
+    this.filters = {
+      marked: false,
+      courses: this.courses,
+    }
+  }
+
+  updateAllFilters() {
+    this.allFiltersChecked = this.filters.courses != null && this.filters.courses.every(course => course.marked);
+  }
+
+  someFilter() {
+    if (this.filters.courses == null) {
+      return false;
+    }
+    console.log('SOME')
+    return this.filters.courses.filter(course => course.marked).length > 0 && !this.allFiltersChecked;
+  }
+
+  setAllFilters(marked: boolean) {
+    this.allFiltersChecked = marked;
+    if (this.filters.courses == null) {
+      return;
+    }
+    this.filters.courses.forEach(course => course.marked = marked);
   }
 
   async getLoadSelectedCourses(): Promise<void> {
@@ -182,7 +217,6 @@ export class DashboardPageComponent implements OnInit {
     this.atividadesEntregues = atividadesEntregues.sort((a, b) => a[0] > b[0] ? 1 : -1);
     // console.log('this.atividadesEntregues', this.atividadesEntregues);
     // console.log('teste');
-
   }
 
   async changePartial(e: any) {
